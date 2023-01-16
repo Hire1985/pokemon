@@ -1,5 +1,5 @@
 export interface resultsPokemon {
-  result: nameUrlPokemons [];
+  results: nameUrlPokemons[];
 }
 export interface nameUrlPokemons {
   name: string;

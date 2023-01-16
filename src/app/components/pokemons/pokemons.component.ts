@@ -16,7 +16,7 @@ export class PokemonsComponent {
 
   ngOnInit(){
     this.pokeApiService.getPokemons().subscribe(data => {
-      this.infoPokemons = data.result;
+      this.infoPokemons = data.results;
     })
   }
 
