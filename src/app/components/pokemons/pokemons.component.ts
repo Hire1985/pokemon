@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { PokeApiService } from "../../services/poke-api.service";
 import { nameUrlPokemons } from "../../model/getPokemon.model";
 
@@ -7,7 +7,7 @@ import { nameUrlPokemons } from "../../model/getPokemon.model";
   templateUrl: './pokemons.component.html',
   styleUrls: ['./pokemons.component.scss']
 })
-export class PokemonsComponent {
+export class PokemonsComponent implements OnInit{
   infoPokemons: nameUrlPokemons [] = []
 
   constructor(
@@ -16,8 +16,8 @@ export class PokemonsComponent {
 
   ngOnInit(){
     this.pokeApiService.getPokemons().subscribe(data => {
-      this.infoPokemons = data.result;
-    })
+      this.infoPokemons = data.results;
+    });
   }
 
 }
