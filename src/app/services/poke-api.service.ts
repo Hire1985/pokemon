@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { resultsPokemon, imgPokemon1 } from "../model/getPokemon.model";
+import { resultsPokemon, resultImgPokemon, Height, Type } from "../model/getPokemon.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +11,18 @@ export class PokeApiService {
     private http: HttpClient
   ) { }
 
-  getPokemons() {
-    return this.http.get<resultsPokemon>( 'https://pokeapi.co/api/v2/pokemon/')
+  getPokemons(index: number) {
+    return this.http.get<resultsPokemon>( `https://pokeapi.co/api/v2/pokemon/${index}`)
 
   }
   getImage() {
-      return this.http.get<imgPokemon1>('https://pokeapi.co/api/v2/pokemon/1/')
+      return this.http.get<resultImgPokemon>('https://pokeapi.co/api/v2/pokemon/1/')
   }
-
+  getHeight(){
+    return this.http.get<Height>('https://pokeapi.co/api/v2/pokemon/1/')
+  }
+  getTypes() {
+    return this.http.get<Type>('https://pokeapi.co/api/v2/pokemon/1/')
+  }
 
 }

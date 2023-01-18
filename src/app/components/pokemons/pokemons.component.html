@@ -3,6 +3,8 @@
   <h1>{{ pokemons.name }}</h1>
 <a href="">{{ pokemons.url }}</a>
 </div>
-<div>
-  {{ imgpokemon }}
+<img [src]="imgpokemon" alt="">
+<h1> Height {{ height }}</h1>
+<div *ngFor="let tipos of typess">
+<h1> Slot {{ tipos.slot }} </h1>
 </div>
