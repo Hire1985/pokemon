@@ -19,8 +19,8 @@ export class PokemonsComponent {
   ){}
 
   ngOnInit(){
-    let pokemons;
-for(let i = 1; i <= 150; i++){
+
+for(let i = 1; i <= 5; i++){
   this.pokeApiService.getPokemons(i).subscribe(data => {
     this.infoPokemons = data.results;
     console.log(data)
@@ -28,18 +28,18 @@ for(let i = 1; i <= 150; i++){
   })
 }
 
-      this.pokeApiService.getImage().subscribe(res => {
-        this.imgpokemon = res.sprites.front_default;
-        console.log(res)
-          this.pokeApiService.getHeight().subscribe(ans => {
-            this.height = ans.height;
-              this.pokeApiService.getTypes().subscribe(datos => {
-                this.typess = datos.types;
+    //   this.pokeApiService.getImage().subscribe(res => {
+    //     this.imgpokemon = res.sprites.front_default;
 
-          })
+    //       this.pokeApiService.getHeight().subscribe(ans => {
+    //         this.height = ans.height;
+    //           this.pokeApiService.getTypes().subscribe(datos => {
+    //             this.typess = datos.types;
 
-      })
-    })
+    //       })
+
+    //   })
+    // })
   }
 
 }
