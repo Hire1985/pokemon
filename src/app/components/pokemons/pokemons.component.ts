@@ -19,7 +19,8 @@ export class PokemonsComponent {
   ){}
 
   ngOnInit(){
-for(let i = 1; 1 <= 20; i++){
+    let pokemons;
+for(let i = 1; i <= 150; i++){
   this.pokeApiService.getPokemons(i).subscribe(data => {
     this.infoPokemons = data.results;
     console.log(data)
