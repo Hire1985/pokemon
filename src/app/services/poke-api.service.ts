@@ -12,7 +12,7 @@ export class PokeApiService {
   ) { }
 
   getPokemons(index: number) {
-    return this.http.get<resultsPokemon>( `https://pokeapi.co/api/v2/pokemon/${index}`)
+    return this.http.get<any>( `https://pokeapi.co/api/v2/pokemon/${index}`)
 
   }
   getImage() {

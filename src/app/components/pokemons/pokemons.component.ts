@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { PokeApiService } from "../../services/poke-api.service";
 import { nameUrlPokemons, Slots } from "../../model/getPokemon.model";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -14,17 +16,33 @@ export class PokemonsComponent {
   height = ''
   typess: Slots [] = []
 
+  displayedColumns: string[] = ['position', 'image' , 'name'];
+  data: any[] = [];
+  dataSource = new MatTableDataSource<any> (this.data)
+  pokemons = []
+  pokemonData = ''
+  @ViewChild(MatPaginator, { static: true })
+  paginator!: MatPaginator;
+
+
+
   constructor(
     private pokeApiService: PokeApiService
   ){}
 
   ngOnInit(){
 
-for(let i = 1; i <= 5; i++){
+var pokemonData;
+for(let i = 1; i <= 150; i++){
   this.pokeApiService.getPokemons(i).subscribe(data => {
-    this.infoPokemons = data.results;
-    console.log(data)
-
+    pokemonData = {
+      position: this.imgpokemon,
+      Image: data.sprites.front_default,
+      name: data.name
+    };
+    this.data.push(pokemonData)
+    this.dataSource = new MatTableDataSource<any>(this.data)
+    this.dataSource.paginator = this.paginator
   })
 }
 
