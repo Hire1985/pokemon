@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { PokeApiService } from '../../services/poke-api.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -8,7 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
   templateUrl: './pokemons.component.html',
   styleUrls: ['./pokemons.component.scss'],
 })
-export class PokemonsComponent {
+export class PokemonsComponent implements OnInit {
   displayedColumns: string[] = ['position', 'image', 'name'];
   data: any[] = [];
   dataSource = new MatTableDataSource<any>(this.data);
@@ -20,9 +20,9 @@ export class PokemonsComponent {
   constructor(private pokeApiService: PokeApiService) {}
 
   ngOnInit() {
-    var pokemonData;
+    let pokemonData;
     for (let i = 1; i <= 151; i++) {
-      this.pokeApiService.getPokemons(i).subscribe((data) => {
+      this.pokeApiService.getPokemons(i).subscribe(data => {
         pokemonData = {
           position: i,
           image: data.sprites.front_default,
@@ -43,7 +43,7 @@ export class PokemonsComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-  @Input() img: string = 'hola';
+  @Input() img = 'hola';
   getRow(row: string) {
     console.log(row);
   }
