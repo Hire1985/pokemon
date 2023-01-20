@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pokemon';
+  imgParent: string = "https://openseauserdata.com/files/0d17c23c409d8e5cc60de4ed195dbdb3.jpg"
 }

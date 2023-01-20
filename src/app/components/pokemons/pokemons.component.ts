@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { PokeApiService } from "../../services/poke-api.service";
 import { nameUrlPokemons, Slots } from "../../model/getPokemon.model";
 import { MatTableDataSource } from "@angular/material/table";
@@ -33,15 +33,15 @@ export class PokemonsComponent {
   ngOnInit(){
 
 var pokemonData;
-for(let i = 1; i <= 150; i++){
+for(let i = 1; i <= 151; i++){
   this.pokeApiService.getPokemons(i).subscribe(data => {
     pokemonData = {
-      position: this.imgpokemon,
-      Image: data.sprites.front_default,
+      position: i,
+      image: data.sprites.front_default,
       name: data.name
     };
     this.data.push(pokemonData)
-    this.dataSource = new MatTableDataSource<any>(this.data)
+    this.dataSource = new MatTableDataSource(this.data)
     this.dataSource.paginator = this.paginator
   })
 }
@@ -58,6 +58,19 @@ for(let i = 1; i <= 150; i++){
 
     //   })
     // })
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+@Input() img: string = 'hola';
+  getRow(row: string){
+    console.log(row)
   }
 
 }
