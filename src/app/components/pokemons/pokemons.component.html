@@ -30,7 +30,7 @@
       >
         Name
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      <td mat-cell *matCellDef="let element"><button (click)="showInfo()">{{ element.name }}</button></td>
     </ng-container>
 
     <!-- Weight Column -->

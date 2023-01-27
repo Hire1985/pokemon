@@ -35,7 +35,7 @@ export class PokemonsComponent {
         };
         this.data.push(pokemonData);
         this.dataSource = new MatTableDataSource(this.data);
-        this.dataSource.paginator = this.
+        this.dataSource.paginator = this.paginator
       });
     }
   }
