@@ -1,7 +1,8 @@
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { PokeApiService } from '../../services/poke-api.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { PokemonLocation } from '../../model/getPokemon.model'
 
 @Component({
   selector: 'app-pokemons',
@@ -16,6 +17,10 @@ export class PokemonsComponent {
   pokemonData = '';
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
+  poke: PokemonLocation = {
+    id: '',
+    name: '',
+  }
 
   constructor(private pokeApiService: PokeApiService) {}
 
@@ -30,11 +35,15 @@ export class PokemonsComponent {
         };
         this.data.push(pokemonData);
         this.dataSource = new MatTableDataSource(this.data);
-        this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator = this.
       });
     }
   }
+  @Output() moreInfo = new EventEmitter<string>();
 
+  showInfo(){
+    this.moreInfo.emit(this.poke.id)
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
