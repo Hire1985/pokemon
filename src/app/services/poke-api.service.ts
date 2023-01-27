@@ -17,4 +17,7 @@ export class PokeApiService {
   getIdPokemon(ids: string) {
     return this.http.get<PokemonLocation>(`${this.Api}/${ids}`)
   }
+getPokemons(index: number) {
+return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/${index}`);
+}
 }
