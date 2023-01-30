@@ -19,7 +19,7 @@ export class PokemonsComponent  {
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
   poke: PokemonLocation = {
-    id: '',
+    url: '',
     name: '',
   }
 
@@ -27,7 +27,7 @@ export class PokemonsComponent  {
 
   ngOnInit() {
     let pokemonData;
-    for (let i = 1; i <= 151; i++) {
+    for (let i = 1; i <= 5; i++) {
       this.pokeApiService.getPokemons(i).subscribe(data => {
         pokemonData = {
           position: i,
@@ -43,7 +43,7 @@ export class PokemonsComponent  {
   @Output() moreInfo = new EventEmitter<string>();
 
   showInfo(){
-    this.moreInfo.emit(this.poke.id)
+    this.moreInfo.emit(this.poke.name)
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
